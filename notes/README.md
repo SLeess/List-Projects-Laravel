@@ -5,12 +5,10 @@
 Sistema de gerenciamento de eventos e suporte para a universidade, desenvolvido com Laravel. Este sistema permite o registro, acompanhamento e gerenciamento de eventos dos alunos, com funcionalidades de Soft Deletes, criptografia de dados e controle de sessão seguro.
 
 ## Funcionalidades
-
-- *Cadastro de Eventos*: Administradores podem cadastrar eventos, que os alunos podem associar para comprovar a participação.
-- *Controle de Participação*: O sistema monitora as horas dos alunos, assegurando que cada aluno cumpra as horas mínimas exigidas para o semestre.
+- *Criação de notas*: Cada usuário tem acesso a um número ilimitado de notas por conta, previamente registrado via banco de dados.
 - *Criptografia e Segurança*: Utiliza criptografia segura para dados sensíveis, incluindo IDs de notas e sessões de usuários, garantidos pela chave de criptografia configurada no arquivo `.env`.
 - *Soft Deletes*: Todos os dados que são excluídos do sistema são marcados como deletados de forma suave, sem remoção física dos registros.
-- *Gestão de Usuários*: Sistema para gerenciar os alunos, garantindo que não haja submissões duplicadas de certificados e que as informações sejam atualizadas conforme necessário.
+- *Gestão de Usuários*: Sistema para gerenciar os usuários, garantindo que não haja submissões duplicadas e que um usuário não acesse as notas do outro.
 - *Controle de Sessão*: As sessões dos usuários são gerenciadas de forma segura, com um ID de sessão criptografado pela chave configurada no `.env`.
 
 ## Tecnologias Utilizadas
