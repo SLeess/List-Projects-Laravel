@@ -12,7 +12,7 @@
         {{-- <!-- form --> --}}
         <div class="row justify-content-center">
             <div class="col-md-10 col-12">
-                <form action="{{ Route('login') }}" method="post" novalidate>
+                <form action="{{ Route('login') }}" method="post">
                     @csrf
                     <div class="mb-3">
                         <label for="text_username" class="form-label">Username</label>
