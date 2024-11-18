@@ -1,5 +1,6 @@
-# Nodes
-
+<p align="center">
+<img src="https://github.com/user-attachments/assets/cc747c73-24ff-48d2-976f-e2cd2318cbda" align="center"/>
+</p>
 
 Sistema de gerenciamento de eventos e suporte para a universidade, desenvolvido com Laravel. Este sistema permite o registro, acompanhamento e gerenciamento de eventos dos alunos, com funcionalidades de Soft Deletes, criptografia de dados e controle de sessão seguro.
 
