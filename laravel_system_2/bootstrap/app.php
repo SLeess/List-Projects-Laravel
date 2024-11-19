@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Middleware\EndMiddleware;
-use App\Http\Middleware\StartMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -14,9 +12,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // criar grupo de middlewares
-        $middleware->prependToGroup('correr_antes', [StartMiddleware::class]);
-        $middleware->appendToGroup('adicionar_depois', [EndMiddleware::class]);
+        //
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
