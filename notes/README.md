@@ -1,66 +1,75 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<img src="https://github.com/user-attachments/assets/cc747c73-24ff-48d2-976f-e2cd2318cbda" align="center"/>
 </p>
 
-## About Laravel
+Sistema de gerenciamento de eventos e suporte para a universidade, desenvolvido com Laravel. Este sistema permite o registro, acompanhamento e gerenciamento de eventos dos alunos, com funcionalidades de Soft Deletes, criptografia de dados e controle de sessão seguro.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Funcionalidades
+- *Criação de notas*: Cada usuário tem acesso a um número ilimitado de notas por conta, previamente registrado via banco de dados.
+- *Criptografia e Segurança*: Utiliza criptografia segura para dados sensíveis, incluindo IDs de notas e sessões de usuários, garantidos pela chave de criptografia configurada no arquivo `.env`.
+- *Soft Deletes*: Todos os dados que são excluídos do sistema são marcados como deletados de forma suave, sem remoção física dos registros.
+- *Gestão de Usuários*: Sistema para gerenciar os usuários, garantindo que não haja submissões duplicadas e que um usuário não acesse as notas do outro.
+- *Controle de Sessão*: As sessões dos usuários são gerenciadas de forma segura, com um ID de sessão criptografado pela chave configurada no `.env`.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Tecnologias Utilizadas
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Laravel**: Framework PHP para o desenvolvimento backend.
+- **Bootstrap**: Framework CSS para o design responsivo.
+- **MySQL**: Banco de dados relacional utilizado para armazenar as informações.
+- **Criptografia com Laravel**: A chave de criptografia configurada no arquivo `.env` é usada para proteger dados sensíveis, como IDs e sessões de usuários.
 
-## Learning Laravel
+## Instalação
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Siga as etapas abaixo para rodar o sistema em sua máquina local:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. **Clone o repositório**:
+   ```bash
+   https://github.com/SLeess/List-Projects-Laravel.git
+   ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. **Instale as dependências via Composer**:
+   No diretório do projeto, execute:
+   ```bash
+   composer install
+   ```
 
-## Laravel Sponsors
+3. **Configure o arquivo `.env`**:
+   Copie o arquivo `.env.example` para `.env` e configure as variáveis necessárias, como a chave de criptografia:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+4. **Configuração do banco de dados**:
+   Atualize as configurações do banco de dados no arquivo `.env` com as credenciais adequadas.
 
-### Premium Partners
+5. **Execute as migrations e seeders**:
+   Para criar as tabelas e popular o banco com dados iniciais, execute:
+   ```bash
+   php artisan migrate --seed
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+6. **Inicie o servidor**:
+   Execute o servidor de desenvolvimento do Laravel:
+   ```bash
+   php artisan serve
+   ```
 
-## Contributing
+## Estrutura de Dados
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+O sistema utiliza **Soft Deletes**, permitindo que os registros não sejam removidos permanentemente, mas sim marcados como excluídos. Isso pode ser visualizado nos modelos que implementam o trait `SoftDeletes` do Laravel.
 
-## Code of Conduct
+### Notas e Sessões
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- **Notas**: O ID das notas é armazenado de forma segura e criptografado.
+- **Sessões**: O ID da sessão do usuário é criptografado utilizando a chave definida na variável `APP_KEY` no arquivo `.env`, garantindo a segurança durante o uso.
 
-## Security Vulnerabilities
+## Contribuição
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Sinta-se à vontade para contribuir com este projeto! Se você encontrou um bug ou tem sugestões de melhorias, por favor, abra uma issue ou envie um pull request.
 
-## License
+## Licença
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Este projeto está sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+```
+Esse README agora reflete as mudanças e funcionalidades do sistema implementadas.
