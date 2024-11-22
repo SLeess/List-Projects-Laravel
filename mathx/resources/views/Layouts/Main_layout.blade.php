@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('/bootstrap/bootstrap.min.css') }}">
     {{-- <!-- main css --> --}}
     <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
+    @yield('css')
 </head>
 
 <body class="@yield('class-body')">

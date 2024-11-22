@@ -1,7 +1,7 @@
 @extends('Layouts.Main_layout')
 @section('content')
-{{-- <!-- form --> --}}
-<form action="{{ Route('generate') }}" method="post">
+{{-- <!-- form -->  <!-- novalidate --> --}}
+<form action="{{ Route('generate') }}" method="post" >
     @csrf
     <div class="container border border-primary rounded-3 p-5">
         <div class="row gap-5">
@@ -78,7 +78,7 @@
         </div>
 
     </div>
-    
+
     @if ($errors->any())
     <div class="container">
         <div class="row">

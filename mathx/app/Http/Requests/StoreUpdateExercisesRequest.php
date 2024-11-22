@@ -36,9 +36,12 @@ class StoreUpdateExercisesRequest extends FormRequest
     public function messages(): array
     {
         return [
-            "exercises.required" => "É obrigatório informar a quantidade de exercícios",
-            "minimum.required" => "É obrigatório informar o valor mínimo",
-            "maximum.required" => "É obrigatório informar o valor Máximo",
+            "exercises.required" => "É obrigatório informar a quantidade de exercícios.",
+            "minimum.required" => "É obrigatório informar o valor mínimo.",
+            "maximum.required" => "É obrigatório informar o valor Máximo.",
+            //lte -> less than
+            "minimum.lte" => "O valor mínimo não pode ser maior que o máximo.",
+            "exercises.min" => "A quantidade mínima de exercícios é 5"
         ];
     }
 }
