@@ -22,10 +22,10 @@ class StoreUpdateExercisesRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            "sum" => "required_without_all:subtraction,multiplication,division|",
-            "subtraction" => "required_without_all:sum,multiplication,division|",
-            "multiplication" => "required_without_all:sum,subtraction,division|",
-            "division" => "required_without_all:sum,subtraction,division|",
+            "sum" => "required_without_all:subtraction,multiplication,division",
+            "subtraction" => "required_without_all:sum,multiplication,division",
+            "multiplication" => "required_without_all:sum,subtraction,division",
+            "division" => "required_without_all:sum,subtraction,division",
             "minimum" => "required|integer|lte:maximum|min:0|max:999",
             "maximum" => "required|integer|min:0|max:999",
             "exercises" => "required|integer|min:5|max:50"
