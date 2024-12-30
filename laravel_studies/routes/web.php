@@ -3,10 +3,11 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Middleware\EndMiddleware;
 use App\Http\Middleware\StartMiddleware;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([EndMiddleware::class, StartMiddleware::class])->group(function () {
-    Route::get("/", function(){
+    Route::get("/start", function(){
         echo "<p>Index</p>";
     })->name("index");
 
@@ -23,4 +24,10 @@ Route::middleware(['correr_antes'])->group(function () {
     Route::get("/about", function(){
         echo "<p>about</p>";
     })->name("about");
+});
+
+
+Route::get('/mysql_test', function(){
+    DB::connection('mysql')->getPdo();
+    echo "OK";
 });
