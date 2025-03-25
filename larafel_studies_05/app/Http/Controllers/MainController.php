@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Order;
 use App\Models\Phone;
 use App\Models\Product;
 use Carbon\Carbon;
+use DragonCode\Support\Facades\Helpers\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
@@ -51,23 +53,43 @@ class MainController extends Controller
 
     public function ManyToMany(Request $request)
     {
-        $clients = Client::all()->map(function($item){
-            $item->products = $item->products()->paginate(2, ["*"], "products");
-            return $item;
-        });
+
+        if($request->session()->has('page') && $request->has('page') && session('page') != $request->get('page')){
+            $request->session()->pull('search_query');
+        }
 
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
 
-        $perPage = 10;
+        $query = //$request->query();
+            Arr::except(array_merge($request->query(), $request->session()->get('search_query', [])), "page");
+
+        $request->session()->put('search_query', $query);
+        $request->session()->put('page', $currentPage);
+        // dd($query, $request->session()->get('search_query'), $request->url());
+        $clients = Client::all()->map(function($item){
+            $item->products = $item->products()
+                                   ->orderBy('product_name')
+                                   ->groupBy(['product_id', 'client_id'])
+                                   ->paginate(5, ["*"], "products_".$item->id);
+
+            foreach($item->products as $product){
+                $product->quantity = $item->orders->where('product_id', $product->id)->sum('quantity');
+            }
+
+            return $item;
+        });
+
+        $perPage = 5;
         $paginatedItems = new LengthAwarePaginator(
             $clients->forPage($currentPage, $perPage),
             $clients->count(),
             $perPage,
             $currentPage,
-            ['path' => $request->url(), 'query' => $request->query()]
+            [
+                'path' => $request->url(),
+                'query' => $query,
+            ]
         );
-
-dd($paginatedItems);
 
         return view('client.compras', ["clients" => $paginatedItems]);
     }
