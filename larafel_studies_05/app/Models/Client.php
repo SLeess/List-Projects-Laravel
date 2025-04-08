@@ -20,7 +20,14 @@ class Client extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'orders', 'client_id', 'product_id', 'id', 'id');
+        return $this->belongsToMany(Product::class, 'orders', 'client_id', 'product_id')->distinct();
+    }
+
+    public function productsWithDataBuy()
+    {
+        return $this->belongsToMany(Product::class, 'orders', 'client_id', 'product_id')
+                    ->withPivot('id','quantity', 'order_number')
+                    ->withTimestamps();
     }
 
     public function orders()
