@@ -15,34 +15,43 @@
               <span class="font-semibold text-sm mr-2 text-left flex-auto">Só é possível criar uma conta por CPF e e-mail.</span>
               <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
             </div>
-        <form class="space-y-6" action="{{ route('login') }}" method="POST">
+        <form id="register" class="space-y-6" action="{{ route('register') }}" method="POST">
             @csrf
             <div>
                 <label for="email" class="block text-sm/6 font-medium text-gray-900"><strong>Nome completo</strong></label>
                 <div class="mt-2">
-                    <input type="text" name="name" id="name" autocomplete="name" placeholder="Nome Completo" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                    <input type="text" name="name" id="name" autocomplete="name" placeholder="Nome Completo" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" value="{{ old('name', '') }}">
                 </div>
             </div>
             <div>
                 <label for="email" class="block text-sm/6 font-medium text-gray-900"><strong>CPF</strong></label>
                 <div class="mt-2">
-                    <input type="text" name="cpf" id="cpf" autocomplete="cpf" placeholder="000.000.000-00" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                    <input type="text" name="cpf" id="cpf" autocomplete="cpf" data-mask="000.000.000-00" placeholder="000.000.000-00" required maxlength="14" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" value="{{ old('cpf', '') }}">
                 </div>
             </div>
             <div>
                 <label for="email" class="block text-sm/6 font-medium text-gray-900"><strong>Email</strong></label>
                 <div class="mt-2">
-                    <input type="email" name="email" id="email" autocomplete="email" placeholder="seu-email@dominio.com" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                    <input type="email" name="email" id="email" autocomplete="email" placeholder="seu-email@dominio.com" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" value="{{ old('email', '') }}">
                 </div>
             </div>
 
             <div>
-            <div class="flex items-center justify-between">
-                <label for="password" class="block text-sm/6 font-medium text-gray-900"><strong>Senha</strong></label>
+                <div class="flex items-center justify-between">
+                    <label for="password" class="block text-sm/6 font-medium text-gray-900"><strong>Senha</strong></label>
+                </div>
+                <div class="mt-2">
+                    <input type="password" name="password" id="password" autocomplete="current-password" placeholder="*********" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                </div>
             </div>
-            <div class="mt-2">
-                <input type="password" name="password" id="password" autocomplete="current-password" placeholder="*********" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-            </div>
+
+            <div class="">
+                <div class="flex items-center justify-between">
+                    <label for="password_confirmed" class="block text-sm/6 font-medium text-gray-900"><strong>Confirmar Senha</strong></label>
+                </div>
+                <div class="mt-2">
+                    <input type="password" name="password_confirmed" id="password_confirmed" autocomplete="current-password" placeholder="*********" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                </div>
             </div>
 
             <div>
@@ -58,11 +67,8 @@
 
 @section('scripts')
 <script>
-// Se quiser rodar jQuery aqui direto
-jQuery(document).ready(function () {
-    console.log('jQuery funcionando!');
-    alert('teste');
-});
-
+    $("#register").submit(function() {
+        $("#cpf").unmask();
+    });
 </script>
 @endsection

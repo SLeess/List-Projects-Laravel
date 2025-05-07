@@ -6,7 +6,6 @@
 
     <div class="sm:mx-auto sm:w-full sm:max-w-sm mt-30 sm:mt-10">
         <img class="mx-auto h-30 w-auto" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('img\logo_cead_bg_white.png'))) }}" alt="Unimontes logo">
-        {{-- <h2 class="mt-5 text-center text-2xl/9 font-bold tracking-tight text-gray-900">PROCEAD</h2> --}}
       </div>
     <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-sm bg-gray-50 rounded-sm  px-6 py-6">
         <h1 class="text-center font-extrabold text-3xl h1 text-[#333A56]">Sistema de Gestão CEAD</h1>

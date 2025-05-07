@@ -1,6 +1,10 @@
-import './bootstrap';
+// import './bootstrap';
 import 'flowbite';
 
-// import $ from 'jquery';
-// window.$ = window.jQuery = $;
-// window.$ = window.jQuery = require('jquery');
+import Swal from 'sweetalert2';
+window.Swal = Swal;
+
+import 'jquery-mask-plugin';
+import toastr from 'toastr';
+window.toastr = toastr;
+
