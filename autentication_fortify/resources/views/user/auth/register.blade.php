@@ -47,10 +47,10 @@
 
             <div class="">
                 <div class="flex items-center justify-between">
-                    <label for="password_confirmed" class="block text-sm/6 font-medium text-gray-900"><strong>Confirmar Senha</strong></label>
+                    <label for="password_confirmation" class="block text-sm/6 font-medium text-gray-900"><strong>Confirmar Senha</strong></label>
                 </div>
                 <div class="mt-2">
-                    <input type="password" name="password_confirmed" id="password_confirmed" autocomplete="current-password" placeholder="*********" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                    <input type="password" name="password_confirmation" id="password_confirmation" autocomplete="current-password" placeholder="*********" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                 </div>
             </div>
 
@@ -66,9 +66,14 @@
 @endsection
 
 @section('scripts')
+
 <script>
-    $("#register").submit(function() {
-        $("#cpf").unmask();
+     $(document).ready(function () {
+        $('#cpf').mask('000.000.000-00');
+
+        $('#register').on('submit', function () {
+            $('#cpf').unmask();
+        });
     });
 </script>
 @endsection

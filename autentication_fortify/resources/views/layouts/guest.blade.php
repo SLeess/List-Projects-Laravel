@@ -12,6 +12,7 @@
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="{{asset('plugins/dist/js/jquery.min.js')}}"></script>
+        <script src="{{asset('plugins/dist/js/jquery.mask.min.js')}}"></script>
 
         @yield('styles')
     </head>

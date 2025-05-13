@@ -12,8 +12,8 @@
         {{-- <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" /> --}}
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @else
-            @dd("teste")
+            <script src="{{asset('plugins/dist/js/jquery.min.js')}}"></script>
+            <script src="{{asset('plugins/dist/js/jquery.mask.min.js')}}"></script>
         @endif
         @yield('styles')
     </head>
